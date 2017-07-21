@@ -1,0 +1,11 @@
+{
+    "name": "ifranco88/laravel-supportchat",
+    "description": "A laravel package live chat support",
+    "authors": [
+        {
+            "name": "Ismael Franco",
+            "email": "ismael.franco.lizana@gmail.com"
+        }
+    ],
+    "require": {}
+}
