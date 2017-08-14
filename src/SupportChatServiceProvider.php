@@ -13,7 +13,23 @@ class SupportChatServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Include package routes
         include __DIR__.'/routes.php';
+
+        //Publish migrations
+        $this->publishes([
+            __DIR__ . '/migrations' => $this->app->databasePath() . '/migrations'
+        ], 'migrations');
+
+        //Publish Config
+        $this->publishes([
+            __DIR__ . '/config' => config_path('laravel-supportchat'),
+        ]);
+
+        //Publish Views
+        $this->publishes([
+            __DIR__ . '/views' => base_path('resources/views/vendor/laravel-supportchat'),
+        ]);
     }
 
     /**
@@ -24,6 +40,13 @@ class SupportChatServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->make('Ifranco88\LaravelSupportChat\SupportChatController');
+
+        //Set templates route
         $this->loadViewsFrom(__DIR__.'/views', 'supportchat');
+
+        //Set config file and its alias
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/laravel-supportchat.php', 'laravel-supportchat'
+        );
     }
 }
