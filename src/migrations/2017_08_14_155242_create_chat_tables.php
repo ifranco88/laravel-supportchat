@@ -19,12 +19,12 @@ class CreateChatTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('chat_conversations', function (Blueprint $table) {
+        Schema::create('chat_messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('data');
-            $table->unsignedInteger('user_id');
+            $table->longText('message');
+            $table->unsignedInteger('sender_id');
             $table->unsignedInteger('chat_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('chat_id')->references('id')->on('chats');
             $table->timestamps();
         });
@@ -37,7 +37,7 @@ class CreateChatTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat_conversation');
+        Schema::dropIfExists('chat_messages');
         Schema::dropIfExists('chat');
     }
 }
