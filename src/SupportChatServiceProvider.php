@@ -52,7 +52,7 @@ class SupportChatServiceProvider extends ServiceProvider
         $this->app->make('Ifranco88\LaravelSupportChat\SupportChatController');
 
         //Set templates route
-        $this->loadViewsFrom(__DIR__.'/views', 'supportchat');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'supportchat');
 
         //Set config file and its alias
         $this->mergeConfigFrom(
